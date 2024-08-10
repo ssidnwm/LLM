@@ -1,0 +1,37 @@
+환경 셋팅 준비
+
+0. work폴더 하나 만들기
+mkdir work
+
+1. work로 이동
+cd work
+
+2. 아래의 파이썬 패키지들을 다운 받습니다. 아래 명령어를 입력하면 됩니다.
+python3 -m pip install pip --upgrade
+pip install huggingface_hub langchain langchain_community langchain_openai faiss-gpu pymupdf langserve sse_starlette pydantic==1.10.13 fastapi uvicorn langchain_huggingface
+
+3. ollama 설치
+curl -fsSL https://ollama.com/install.sh | sh
+
+4. eeve 설치(아래 실행)
+work 폴더로 이동
+down.sh 실행
+echo 'export PATH=$PATH:$HOME/.local/bin' >> ~/.bashrc
+source ~/.bashrc
+bash down.sh
+
+5. Modelfile과 ggml-model-Q5_K_M.gguf를 같은 위치에 둡니다.
+
+6. ollama에 eeve 등록(ollama가 켜져 있어야 함)
+ollama create EEVE-Korean-10.8B -f Modelfile
+ollama list
+
+7. ollama로 eeve 해보기(ollama가 켜져 있어야 함, 종료 : type "/bye" or ctrl+d)
+ollama run EEVE-Korean-10.8B:latest
+
+8. ollama 종료
+sudo systemctl stop ollama.service
+
+7. ollama 시작
+sudo systemctl start ollama.service
+

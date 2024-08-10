@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>간단한 번역 웹사이트</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 20px;
+  }
+  #translationPurpose, #inputText {
+    width: 80%;
+    height: 50px;
+    font-size: 16px;
+    padding: 10px;
+    margin-bottom: 20px;
+  }
+  #translationResult {
+    width: 80%;
+    min-height: 100px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+    margin: 0 auto;
+  }
+  button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+</style>
+</head>
+<body>
+  <h1>간단한 번역 웹사이트</h1>
+  <textarea id="translationPurpose" placeholder="번역 목적을 입력하세요 (예: 비즈니스 이메일 번역)..."></textarea><br>
+  <textarea id="inputText" placeholder="번역할 내용을 입력하세요..."></textarea><br>
+  <button id="translateButton">번역하기</button>
+  <div id="translationResult"></div>
+
+  <script>
+    document.getElementById('translateButton').addEventListener('click', function() {
+      const inputText = document.getElementById('inputText').value;
+      const translationPurpose = document.getElementById('translationPurpose').value;
+
+      // API URL 정의
+      const apiUrl = 'http://mysemigpt.com:8000/api_prompt';
+
+      // GET 방식으로 전달할 파라미터 설정
+      const params = {
+        prompt: translationPurpose,
+        question: inputText
+      };
+
+      // 파라미터를 쿼리스트링으로 변환
+      const queryString = Object.keys(params).map(key => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`).join('&');
+
+      // 완성된 API 요청 URL
+      const requestUrl = `${apiUrl}?${queryString}`;
+
+      // AJAX로 API 요청
+      const xhr = new XMLHttpRequest();
+      xhr.open('GET', requestUrl, true);
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          const response = JSON.parse(xhr.responseText);
+          const translatedText = response.answer; // JSON 결과에서 answer 필드 추출
+          document.getElementById('translationResult').innerText = translatedText;
+        }
+      };
+      xhr.send();
+    });
+  </script>
+</body>
+</html>

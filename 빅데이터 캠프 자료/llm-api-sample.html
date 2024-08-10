@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flask API Test</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Flask API Test</h1>
+    <label for="question">Enter your question:</label>
+    <input type="text" id="question" placeholder="What is the capital of France?">
+    <button id="submit">Submit</button>
+    
+    <h2>Response:</h2>
+    <pre id="response"></pre>
+
+    <script>
+        $(document).ready(function(){
+            $('#submit').click(function(){
+                var question = $('#question').val();
+                
+                $.ajax({
+                    url: 'https://a371-35-204-96-203.ngrok-free.app/ask',  // ngrok URL로 변경
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({question: question}),
+                    success: function(response) {
+                        $('#response').text(JSON.stringify(response, null, 2));
+                    },
+                    error: function(error) {
+                        $('#response').text('Error: ' + JSON.stringify(error));
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

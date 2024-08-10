@@ -1,0 +1,56 @@
+putty에서
+
+hostname
+
+woojin@ip
+
+open
+
+하고 터미널 열림
+
+pw: 입력--
+
+su치고 패스워드 입력-> 관리자 계정
+
+root@표시가 관리자 계정이라는 뜻
+
+add user로 새 계정을 만듬
+
+adduser nicknam
+pw 입력하면 됨
+
+이후
+su 유저계정으로 접속
+-> su username
+
+cd ..
+home에서 ls를 하면 그 공간에 있는 사람들을 확인할 수 있음
+
+이후 vs코드에서 ctrl shift p로 커멘드
+remote ssh connect
+여기서
+new host
+
+ssh name@ip 이렇게 새로운 호스트를 만듬
+이후 config 폴더로 들어감.
+
+이후 만들어진 ip주소에 들어가서 패스워드 입력
+새로운 폴더 혹은 파일 작성시
+/home/username에서 진행하는 것이 아닌
+/var/www/html에서 웹서비스 진행
+
+
+유저권한부여
+
+터미널에서 su 관리자 계정에서 작성권한부여 가능
+su
+김원은1!로 접속
+
+root@에서
+
+chown -R username /var/www/html 
+username에게 경로안의 모든 권한 부여함
+
+
+
+apt update

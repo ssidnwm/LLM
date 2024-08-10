@@ -1,0 +1,37 @@
+준비
+
+아래의 파이썬 패키지들을 다운 받습니다. 아래 명령어를 입력하면 됩니다.
+pip install huggingface_hub
+pip install langchain
+pip install langchain_community
+pip install langchain_openai
+pip install faiss-gpu
+pip install pymupdf
+pip install langserve
+pip install sse_starlette
+pip install pydantic==1.10.13
+pip install fastapi uvicorn
+pip install langchain_huggingface
+
+3. ollama 설치
+curl -fsSL https://ollama.com/install.sh | sh
+
+4. eeve 설치(아래 실행)
+bash down.sh
+echo 'export PATH=$PATH:$HOME/.local/bin' >> ~/.bashrc
+source ~/.bashrc
+
+
+5. ollama에 eeve 등록(ollama가 켜져 있어야 함)
+ollama create ollama run gemma2:27b -f Modelfile
+ollama list
+
+5. ollama로 eeve 해보기(ollama가 켜져 있어야 함, 종료 : type "/bye" or ctrl+d)
+ollama run ollama run gemma2:27b
+
+6. ollama 종료
+sudo systemctl stop ollama.service
+
+7. ollama 시작
+sudo systemctl start ollama.service
+
