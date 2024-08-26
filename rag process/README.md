@@ -14,3 +14,9 @@ https://www.notion.so/rag-colab-0214b727ccc34accafb6c9b9782b51d7
 ## rag평가.ipnb
 rag프로세스의 성능을 판별하기 위한 코드
 
+
+# Update 0826
+add new code createDB.py , rag_streamlit_json.py, fullDocuments.jsonl, images files, teammeeting files
+
+기존 rag구현에 있어, 사용하는 데이터의 타입을 json으로 정형화하였고, 이를 db화하여 streamlit rag코드에 구현함.
+
